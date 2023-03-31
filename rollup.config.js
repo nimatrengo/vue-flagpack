@@ -1,12 +1,14 @@
 import commonjs from 'rollup-plugin-commonjs'
 import VuePlugin from 'rollup-plugin-vue'
+import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
 const plugins = [
+  VuePlugin(),
+  postcss({ extract: true}),
   commonjs(),
-  VuePlugin()
 ]
 
 if (isProduction) {
