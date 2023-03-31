@@ -1,1 +1,76 @@
-!function(e,a){"use strict";var r={name:"Flag",computed:{imageUrl(){return e.imageUrl(e.isoToCountryCode(this.code).toUpperCase(),this.size.toLowerCase())}},props:{size:{type:String,default:"m",validator:e=>-1!==["s","m","l"].indexOf(e)},code:{type:String,default:"528"},hasDropShadow:{type:Boolean,default:!1},hasBorder:{type:Boolean,default:!0},hasBorderRadius:{type:Boolean,default:!0},gradient:{type:String,validator:e=>-1!==["top-down","real-linear","real-circular"].indexOf(e)},className:{type:String}}};const o=["src"];r.render=function(e,r,t,s,l,d){return a.openBlock(),a.createElementBlock("div",{class:a.normalizeClass(["flag",`size-${t.size}`,{"border-radius":t.hasBorderRadius},{border:t.hasBorder},{"drop-shadow":t.hasDropShadow},t.gradient,t.className])},[a.createElementVNode("img",{src:d.imageUrl},null,8,o)],2)},r.__scopeId="data-v-3a1b003a",module.exports={install:function(e,a){e.component(a.name||"vue-flagpack",r)}}}(flagpackCore,Vue);
+(function (flagpackCore, vue) {
+  'use strict';
+
+  var script = {
+    name: 'Flag',
+    computed: {
+      imageUrl () {
+        const url = flagpackCore.imageUrl(flagpackCore.isoToCountryCode(this.code).toUpperCase(), this.size.toLowerCase());
+        return url
+      }
+    },
+    props: {
+      size: {
+        type: String,
+        default: 'm',
+        validator: value => (
+          ['s', 'm', 'l'].indexOf(value) !== -1
+        ),
+      },
+      code: {
+        type: String,
+        default: '528'
+      },
+      hasDropShadow: {
+        type: Boolean,
+        default: false,
+      },
+      hasBorder: {
+        type: Boolean,
+        default: true
+      },
+      hasBorderRadius: {
+        type: Boolean,
+        default: true,
+      },
+      gradient: {
+        type: String,
+        validator: value => (
+          ['top-down', 'real-linear', 'real-circular'].indexOf(value) !== -1
+        ),
+      },
+      className: {
+        type: String
+      }
+    },
+  };
+
+  const _hoisted_1 = ["src"];
+
+  function render(_ctx, _cache, $props, $setup, $data, $options) {
+    return (vue.openBlock(), vue.createElementBlock("div", {
+      class: vue.normalizeClass([
+        'flag',
+        `size-${$props.size}`,
+        {'border-radius': $props.hasBorderRadius },
+        {'border': $props.hasBorder },
+        {'drop-shadow': $props.hasDropShadow},
+        $props.gradient,
+        $props.className
+      ])
+    }, [
+      vue.createElementVNode("img", { src: $options.imageUrl }, null, 8 /* PROPS */, _hoisted_1)
+    ], 2 /* CLASS */))
+  }
+
+  script.render = render;
+  script.__scopeId = "data-v-bea46236";
+  script.__file = "src/Flag.vue";
+
+  module.exports = {
+    install: function install(Vue, options) {
+      Vue.component(options.name || 'vue-flagpack', script);
+    }
+  };
+
+})(flagpackCore, Vue);
